@@ -61,7 +61,16 @@ public class Panier {
 
     //groupe 5
     public void retrait() throws PanierVideException{ //retire le dernier fruit du panier si celui-ci n'est pas vide
-
+        //Sarra et Sacha
+        int indice = this.fruits.length();
+        String nom_fruit = this.fruits[indice];
+        if (indice != 0){
+            this.fruits.remove(indice);
+            System.out.println(nom_fruit +" a été supprimé du panier");
+        }
+        else{
+            System.out.println("impossible de supprimer, le panier est vide");
+        }
     }
 
     //groupe 6
