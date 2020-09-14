@@ -54,9 +54,12 @@ public class Panier {
 	return false;
     }
 
-    //groupe 4
+    //groupe 4 LILI et RIRINE
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
-
+      if(this.fruits.size() < this.contenanceMax){
+        this.fruits.add(o);
+      }
+      else throw new PanierPleinException();
     }
 
     //groupe 5
@@ -100,6 +103,7 @@ public class Panier {
     public static void main (String[] args){
     	//Ecrire ici vos tests
 	     System.out.println("premier test Panier");
+<<<<<<< HEAD
         Panier panier_1 = new Panier(2);
         Fraise fraise = new Fraise();
         fraise.setPrix(1.4);
@@ -107,5 +111,28 @@ public class Panier {
         fraise.toString();
         //to do
         //panier_1.retrait();
+=======
+
+
+      //test ajout panier
+      Panier panier = new Panier(1);
+      Pomme pomme = new Pomme();
+      Pomme pomme2 = new Pomme();
+      System.out.println(pomme);
+      try{
+        panier.ajout(pomme);
+        panier.ajout(pomme2);
+      }
+      catch(Exception e){
+        System.out.println(e);
+      }
+      System.out.println();
+
+       Fraise fraise = new Fraise();
+       fraise.setPrix(1.4);
+       fraise.setOrigine("France");
+       fraise.toString();
+
+>>>>>>> 161eb5e7bf0bb5149e7ff2ec4e1aa46501fd77bc
     }
 }
