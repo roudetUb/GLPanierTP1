@@ -36,9 +36,15 @@ public class Orange {
     public String getOrigine(){
 	return origine;
     }
+<<<<<<< HEAD
 
     public void setOrigine(String country){
 	     this.origine=country;
+=======
+ 
+    public void setOrigine(String origine){
+	this.origine=origine;
+>>>>>>> 54be00d11c414970ff9bdd20bdc7a58f9573fa1b
     }
 
     @Override
