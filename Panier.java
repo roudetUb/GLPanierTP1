@@ -16,6 +16,7 @@ public class Panier {
 
     @Override
     public String toString(){  //affichage de ce qui est contenu dans le panier : liste des fruits presents
+        // Guillaume
         return "La panier comporte " + this.fruits.size() + " et a une contenanceMax de " + this.contenanceMax;
     }
 
@@ -82,6 +83,10 @@ public class Panier {
     //tests
     public static void main (String[] args){
     	//Ecrire ici vos tests
-	System.out.println("premier test Panier");
+	     System.out.println("premier test Panier");
+       Fraise fraise = new Fraise();
+       fraise.setPrix(1.4);
+       fraise.setOrigine("France");
+       fraise.toString();
     }
 }
