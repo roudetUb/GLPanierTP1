@@ -100,18 +100,9 @@ public class Panier {
     }
 
     //tests
-    public static void main (String[] args){
+     public static void main (String[] args){
     	//Ecrire ici vos tests
 	     System.out.println("premier test Panier");
-<<<<<<< HEAD
-        Panier panier_1 = new Panier(2);
-        Fraise fraise = new Fraise();
-        fraise.setPrix(1.4);
-        fraise.setOrigine("France");
-        fraise.toString();
-        //to do
-        //panier_1.retrait();
-=======
 
 
       //test ajout panier
@@ -132,7 +123,9 @@ public class Panier {
        fraise.setPrix(1.4);
        fraise.setOrigine("France");
        fraise.toString();
+       panier.retrait();
 
->>>>>>> 161eb5e7bf0bb5149e7ff2ec4e1aa46501fd77bc
+    
+
     }
 }
