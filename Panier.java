@@ -53,9 +53,12 @@ public class Panier {
 	return false;
     }
 
-    //groupe 4
+    //groupe 4 LILI et RIRINE
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
-
+      if(this.fruits.size() < this.contenanceMax){
+        this.fruits.add(o);
+      }
+      else throw new PanierPleinException();
     }
 
     //groupe 5
@@ -82,6 +85,22 @@ public class Panier {
     //tests
     public static void main (String[] args){
     	//Ecrire ici vos tests
-	System.out.println("premier test Panier");
+	     System.out.println("premier test Panier");
+
+
+      //test ajout panier
+      Panier panier = new Panier(1);
+      Pomme pomme = new Pomme();
+      Pomme pomme2 = new Pomme();
+      System.out.println(pomme);
+      try{
+        panier.ajout(pomme);
+        panier.ajout(pomme2);
+      }
+      catch(Exception e){
+        System.out.println(e);
+      }
+      System.out.println();
+
     }
 }
