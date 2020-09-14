@@ -16,6 +16,7 @@ public class Panier {
 
     @Override
     public String toString(){  //affichage de ce qui est contenu dans le panier : liste des fruits presents
+        // Guillaume
         return "La panier comporte " + this.fruits.size() + " et a une contenanceMax de " + this.contenanceMax;
     }
 
@@ -63,7 +64,16 @@ public class Panier {
 
     //groupe 5
     public void retrait() throws PanierVideException{ //retire le dernier fruit du panier si celui-ci n'est pas vide
-
+        //Sarra et Sacha
+        int indice = this.fruits.length();
+        String nom_fruit = this.fruits[indice];
+        if (indice != 0){
+            this.fruits.remove(indice);
+            System.out.println(nom_fruit +" a été supprimé du panier");
+        }
+        else{
+            System.out.println("impossible de supprimer, le panier est vide");
+        }
     }
 
     //groupe 6
@@ -79,7 +89,14 @@ public class Panier {
     //groupe 8
     @Override
     public boolean equals(Object o){  ///predicat pour tester si 2 paniers sont equivalents : s'ils contiennent exactement les memes fruits
-        return false;
+      if (o == null || getClass() != o.getClass()) return false;
+      Panier p = (Panier)o;
+      int length = Math.min(p.getTaillePanier(), this.getTaillePanier());
+      for (int i = 0; i < length; i++) {
+        if (!p.getFruit(i).equals(this.getFruit(i))) return false;
+      }
+
+      return true;
     }
 
     //tests
@@ -101,6 +118,11 @@ public class Panier {
         System.out.println(e);
       }
       System.out.println();
+
+       Fraise fraise = new Fraise();
+       fraise.setPrix(1.4);
+       fraise.setOrigine("France");
+       fraise.toString();
 
     }
 }

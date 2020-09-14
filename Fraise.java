@@ -2,17 +2,17 @@
  *
  * @author roudet
  */
-public class Orange {
+public class Fraise implements Fruit {
     private double prix;
     private String origine;
 
-    public Orange()
+    public Fraise()
     {
-        this.prix = 0.5;  //prix en euros
-        this.origine="Espagne";
+        this.prix = 1.5;  //prix en euros
+        this.origine="Portugal";
     }
 
-    public Orange(double prix, String origine)
+    public Fraise(double prix, String origine)
     {
 	if(prix < 0)
 	    this.prix = -prix;  //une solution possible pour interdire les prix negatifs
@@ -20,7 +20,7 @@ public class Orange {
 	    this.prix = prix;
 
 	if(origine.equals(""))
-            this.origine = "Espagne";  //Espagne par défaut
+            this.origine = "Portugal";  //Espagne par défaut
 	else
             this.origine = origine;
     }
@@ -36,27 +36,21 @@ public class Orange {
     public String getOrigine(){
 	return origine;
     }
-<<<<<<< HEAD
 
     public void setOrigine(String country){
-	     this.origine=country;
-=======
- 
-    public void setOrigine(String origine){
 	this.origine=origine;
->>>>>>> 54be00d11c414970ff9bdd20bdc7a58f9573fa1b
     }
 
     @Override
     public String toString(){
-        return "Orange de " + origine + " a " + prix + " euros";
+        return "Fraise de " + origine + " a " + prix + " euros";
     }
 
     @Override
     public boolean equals(Object o){  //predicat pour tester si 2 oranges sont equivalentes
         if(o != null && getClass() == o.getClass()){
-            Orange or = (Orange) o;
-            return (prix == or.prix && origine.equals(or.origine));
+            Fraise fr = (Fraise) o;
+            return (prix == fr.prix && origine.equals(fr.origine));
         }
         return false;
     }
@@ -64,10 +58,4 @@ public class Orange {
     public boolean isSeedless() {  //predicat indiquant qu'une orange a des pepins
         return false;
     }
-
-
-    public static void main (String[] args){
-        //Ecrire ici vos tests
-	System.out.println("premier test Orange");
-   }
 }
