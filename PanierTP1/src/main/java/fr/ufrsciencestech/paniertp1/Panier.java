@@ -17,7 +17,7 @@ public class Panier {
     @Override
     public String toString(){  //affichage de ce qui est contenu dans le panier : liste des fruits presents
         // Guillaume
-        return "La panier comporte " + this.fruits.size() + " et a une contenanceMax de " + this.contenanceMax;
+        return "Le panier comporte " + this.fruits.size() + " et a une contenanceMax de " + this.contenanceMax;
     }
 
     //groupe 2
