@@ -1,3 +1,11 @@
+package fr.ufrsciencestech.paniertp1;
+
+import fr.ufrsciencestech.paniertp1.Fruit;
+import fr.ufrsciencestech.paniertp1.Framboise;
+import fr.ufrsciencestech.paniertp1.Fraise;
+import fr.ufrsciencestech.paniertp1.Fraise;
+import fr.ufrsciencestech.paniertp1.Framboise;
+import fr.ufrsciencestech.paniertp1.Fruit;
 import java.util.*;
 /**
  *

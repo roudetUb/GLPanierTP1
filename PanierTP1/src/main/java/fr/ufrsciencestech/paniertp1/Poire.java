@@ -1,3 +1,5 @@
+package fr.ufrsciencestech.paniertp1;
+
 public class Poire{
     private double prix;
     private String origine;
