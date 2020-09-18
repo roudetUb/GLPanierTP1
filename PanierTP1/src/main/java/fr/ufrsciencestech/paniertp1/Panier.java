@@ -1,3 +1,11 @@
+package fr.ufrsciencestech.paniertp1;
+
+import fr.ufrsciencestech.paniertp1.Fruit;
+import fr.ufrsciencestech.paniertp1.Framboise;
+import fr.ufrsciencestech.paniertp1.Fraise;
+import fr.ufrsciencestech.paniertp1.Fraise;
+import fr.ufrsciencestech.paniertp1.Framboise;
+import fr.ufrsciencestech.paniertp1.Fruit;
 import java.util.*;
 /**
  *
@@ -17,7 +25,7 @@ public class Panier {
     @Override
     public String toString(){  //affichage de ce qui est contenu dans le panier : liste des fruits presents
         // Guillaume
-        return "La panier comporte " + this.fruits.size() + " et a une contenanceMax de " + this.contenanceMax;
+        return "Le panier comporte " + this.fruits.size() + " et a une contenanceMax de " + this.contenanceMax;
     }
 
     //groupe 2
@@ -63,13 +71,14 @@ public class Panier {
     }
 
     //groupe 5
-    public void retrait() throws PanierVideException{ //retire le dernier fruit du panier si celui-ci n'est pas vide
-        //Sarra et Sacha
-        int indice = this.fruits.length();
-        String nom_fruit = this.fruits[indice];
+    public void retrait(){ // throws PanierVideException{  //retire le dernier fruit du panier si celui-ci n'est pas vide
+        //Sarra et Sacha 
+        int indice = this.fruits.size();              //modifié par C. Roudet
+        Fruit nom_fruit = this.fruits.get(indice-1);  //modifié par C. Roudet
+        
         if (indice != 0){
-            this.fruits.remove(indice);
-            System.out.println(nom_fruit +" a été supprimé du panier");
+            this.fruits.remove(indice-1);             //modifié par C. Roudet
+            System.out.println(nom_fruit.toString() +" a été supprimé du panier");
         }
         else{
             System.out.println("impossible de supprimer, le panier est vide");
@@ -102,34 +111,32 @@ public class Panier {
     //tests
      public static void main (String[] args){
     	//Ecrire ici vos tests
-	     System.out.println("premier test Panier");
+	System.out.println("premier test Panier");
 
-       Framboise framboise = new Framboise();
-       framboise.setPrix(1.4);
-       framboise.setOrigine("France");
-       framboise.toString();
+        Framboise framboise = new Framboise();
+        framboise.setPrix(1.4);
+        framboise.setOrigine("France");
+        framboise.toString();
 
+        //test ajout panier
+        Panier panier = new Panier(1);
+        Pomme pomme = new Pomme();
+        Pomme pomme2 = new Pomme();
+        System.out.println(pomme);
+        try{
+            panier.ajout(pomme);
+            panier.ajout(pomme2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        System.out.println();
 
-
-      //test ajout panier
-      Panier panier = new Panier(1);
-      Pomme pomme = new Pomme();
-      Pomme pomme2 = new Pomme();
-      System.out.println(pomme);
-      try{
-        panier.ajout(pomme);
-        panier.ajout(pomme2);
-      }
-      catch(Exception e){
-        System.out.println(e);
-      }
-      System.out.println();
-
-       Fraise fraise = new Fraise();
-       fraise.setPrix(1.4);
-       fraise.setOrigine("France");
-       fraise.toString();
-       panier.retrait();
+        Fraise fraise = new Fraise();
+        fraise.setPrix(1.4);
+        fraise.setOrigine("France");
+        fraise.toString();
+        panier.retrait();  
 
     
 
