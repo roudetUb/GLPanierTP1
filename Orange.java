@@ -37,7 +37,7 @@ public class Orange {
 	return origine;
     }
  
-    public void setOrigine(String country){
+    public void setOrigine(String origine){
 	this.origine=origine;
     }
 
