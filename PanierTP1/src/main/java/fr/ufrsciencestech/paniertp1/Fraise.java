@@ -57,7 +57,7 @@ public class Fraise implements Fruit {
         return false;
     }
 
-    public boolean isSeedless() {  //predicat indiquant qu'une orange a des pepins
-        return false;
+    public boolean isSeedless() {  //predicat indiquant qu'une fraise n'a pas de pepins
+        return true;
     }
 }

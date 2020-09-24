@@ -1,11 +1,5 @@
 package fr.ufrsciencestech.paniertp1;
 
-import fr.ufrsciencestech.paniertp1.Fruit;
-import fr.ufrsciencestech.paniertp1.Framboise;
-import fr.ufrsciencestech.paniertp1.Fraise;
-import fr.ufrsciencestech.paniertp1.Fraise;
-import fr.ufrsciencestech.paniertp1.Framboise;
-import fr.ufrsciencestech.paniertp1.Fruit;
 import java.util.*;
 /**
  *
@@ -18,8 +12,8 @@ public class Panier {
     //groupe 1
     public Panier(int contenanceMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
       // Guillaume
-	     this.contenanceMax = Math.abs(contenanceMax);
-       this.fruits = new ArrayList<Fruit>();
+        this.contenanceMax = Math.abs(contenanceMax);
+        this.fruits = new ArrayList<Fruit>();
     }
 
     @Override
@@ -47,27 +41,32 @@ public class Panier {
 
     //groupe 3
     public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
-	return null;
+	if(i >= 0 && i < getFruits().size())
+            return getFruits().get(i);
+        else
+            return null;
     }
 
     public void setFruit(int i, Fruit f){  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
-
+        fruits.set(i, f);
     }
 
     public boolean estVide(){  //predicat indiquant que le panier est vide
-	return false;
+	return fruits.isEmpty();
     }
 
     public boolean estPlein(){  //predicat indiquant que le panier est plein
-	return false;
+	return fruits.size() == contenanceMax;
     }
 
     //groupe 4 LILI et RIRINE
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
-      if(this.fruits.size() < this.contenanceMax){
-        this.fruits.add(o);
-      }
-      else throw new PanierPleinException();
+        if(o == null)
+            return;
+        if(this.fruits.size() < this.contenanceMax){
+            this.fruits.add(o);
+        }
+        else throw new PanierPleinException();
     }
 
     //groupe 5
@@ -87,12 +86,21 @@ public class Panier {
 
     //groupe 6
     public double getPrix(){  //calcule le prix du panier par addition des prix de tous les fruits contenus dedans
-	return 0;
+	double total=0;
+	for(int i = 0 ; i < getFruits().size() ; i++)
+            total += fruits.get(i).getPrix();
+	return total;
     }
 
     //groupe 7
     public void boycotteOrigine(String origine){  //supprime du panier tous les fruits provenant du pays origine
-
+        int i = 0;					//A
+	while(i < fruits.size()){			//B
+            if(fruits.get(i).getOrigine().equals(origine)) //C
+		fruits.remove(i);			//D
+            else								 
+		i++ ;					//E
+        }
     }
 
     //groupe 8
@@ -127,7 +135,7 @@ public class Panier {
             panier.ajout(pomme);
             panier.ajout(pomme2);
         }
-        catch(Exception e){
+        catch(PanierPleinException e){
             System.out.println(e);
         }
         System.out.println();
@@ -137,9 +145,5 @@ public class Panier {
         fraise.setOrigine("France");
         fraise.toString();
         panier.retrait();  
-
-    
-
-
     }
 }

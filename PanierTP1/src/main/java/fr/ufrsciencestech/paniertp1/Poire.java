@@ -1,6 +1,6 @@
 package fr.ufrsciencestech.paniertp1;
 
-public class Poire{
+public class Poire implements Fruit{
     private double prix;
     private String origine;
 	
@@ -53,7 +53,7 @@ public class Poire{
         return false;
     }
 
-    public boolean isSeedless() {  //predicat indiquant qu'une orange a des pepins
+    public boolean isSeedless() {  //predicat indiquant qu'une poire a des pepins
         return false;
     }
 

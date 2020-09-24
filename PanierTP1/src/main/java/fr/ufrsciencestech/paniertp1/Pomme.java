@@ -61,15 +61,15 @@ public class Pomme implements Fruit{
         return false;
     }
 
-    public boolean isSeedless() {
-        return true;
+    public boolean isSeedless() {  //predicat indiquant qu'une pomme a des pepins
+        return false;
     }
 
 
     public static void main (String[] args){
         //Ecrire ici vos tests
-	       System.out.println("premier test Pomme");
-         Pomme pomme = new Pomme(-2, "UB Dijon");
-         System.out.println(pomme.toString());
+        System.out.println("premier test Pomme");
+        Pomme pomme = new Pomme(-2, "UB Dijon");
+        System.out.println(pomme.toString());
    }
 }
