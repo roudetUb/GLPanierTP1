@@ -1,11 +1,11 @@
-package fr.ufrsciencestech.paniertp1;
+package fr.ufrsciencestech.paniertp1.model;
 
 import java.util.*;
 /**
  *
  * @author roudet
  */
-public class Panier {
+public class Panier extends Observable{
     private ArrayList<Fruit> fruits;  //attribut pour stocker les fruits
     private int contenanceMax;        //nb maximum d'oranges que peut contenir le panier
 
@@ -65,22 +65,22 @@ public class Panier {
             return;
         if(this.fruits.size() < this.contenanceMax){
             this.fruits.add(o);
+            setChanged();
+            notifyObservers();
         }
         else throw new PanierPleinException();
     }
 
     //groupe 5
-    public void retrait(){ // throws PanierVideException{  //retire le dernier fruit du panier si celui-ci n'est pas vide
-        //Sarra et Sacha 
-        int indice = this.fruits.size();              //modifié par C. Roudet
-        Fruit nom_fruit = this.fruits.get(indice-1);  //modifié par C. Roudet
-        
-        if (indice != 0){
-            this.fruits.remove(indice-1);             //modifié par C. Roudet
-            System.out.println(nom_fruit.toString() +" a été supprimé du panier");
+    public void retrait() throws PanierVideException{  //retire le dernier fruit du panier si celui-ci n'est pas vide
+        if(!estVide()){
+            getFruits().remove(getFruits().size()-1);
+            setChanged();
+            notifyObservers();
         }
-        else{
-            System.out.println("impossible de supprimer, le panier est vide");
+        else 
+        {
+            throw new PanierVideException();
         }
     }
 
@@ -117,7 +117,7 @@ public class Panier {
     }
 
     //tests
-     public static void main (String[] args){
+     public static void main (String[] args) throws PanierVideException{
     	//Ecrire ici vos tests
 	System.out.println("premier test Panier");
 

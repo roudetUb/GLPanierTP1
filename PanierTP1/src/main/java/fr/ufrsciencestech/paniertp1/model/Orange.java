@@ -1,16 +1,20 @@
-package fr.ufrsciencestech.paniertp1;
+package fr.ufrsciencestech.paniertp1.model;
 
-public class Poire implements Fruit{
+/**
+ *
+ * @author roudet
+ */
+public class Orange implements Fruit {
     private double prix;
     private String origine;
-	
-    public Poire() 
+
+    public Orange()
     {
         this.prix = 0.5;  //prix en euros
-        this.origine="Mali";
+        this.origine="Espagne";
     }
-    
-    public Poire(double prix, String origine) 
+
+    public Orange(double prix, String origine)
     {
 	if(prix < 0)
 	    this.prix = -prix;  //une solution possible pour interdire les prix negatifs
@@ -18,9 +22,9 @@ public class Poire implements Fruit{
 	    this.prix = prix;
 
 	if(origine.equals(""))
-            this.origine = "Mali";  //Mali par défaut
+            this.origine = "Espagne";  //Espagne par défaut
 	else
-            this.origine = origine;   
+            this.origine = origine;
     }
 
     public double getPrix(){
@@ -34,32 +38,32 @@ public class Poire implements Fruit{
     public String getOrigine(){
 	return origine;
     }
- 
+
     public void setOrigine(String origine){
 	this.origine=origine;
     }
 
     @Override
     public String toString(){
-        return "Poire de " + origine + " a " + prix + " euros";
+        return "Orange de " + origine + " a " + prix + " euros";
     }
 
     @Override
     public boolean equals(Object o){  //predicat pour tester si 2 oranges sont equivalentes
         if(o != null && getClass() == o.getClass()){
-            Poire or = (Poire) o;
+            Orange or = (Orange) o;
             return (prix == or.prix && origine.equals(or.origine));
         }
         return false;
     }
 
-    public boolean isSeedless() {  //predicat indiquant qu'une poire a des pepins
+    public boolean isSeedless() {  //predicat indiquant qu'une orange a des pepins
         return false;
     }
 
 
     public static void main (String[] args){
         //Ecrire ici vos tests
-	System.out.println("premier test Poire");
+	System.out.println("premier test Orange");
    }
 }

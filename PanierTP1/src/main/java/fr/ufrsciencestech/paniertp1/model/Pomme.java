@@ -1,8 +1,4 @@
-package fr.ufrsciencestech.paniertp1;
-
-
-import fr.ufrsciencestech.paniertp1.Fruit;
-import fr.ufrsciencestech.paniertp1.Fruit;
+package fr.ufrsciencestech.paniertp1.model;
 
 /**
  *

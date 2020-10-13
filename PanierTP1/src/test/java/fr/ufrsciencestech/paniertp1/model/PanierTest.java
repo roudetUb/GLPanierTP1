@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ufrsciencestech.paniertp1;
+package fr.ufrsciencestech.paniertp1.model;
 
 import java.util.ArrayList;
 import org.junit.After;

@@ -1,4 +1,4 @@
-package fr.ufrsciencestech.paniertp1;
+package fr.ufrsciencestech.paniertp1.model;
 
 /**
  *
