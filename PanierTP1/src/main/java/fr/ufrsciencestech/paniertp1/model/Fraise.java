@@ -27,6 +27,7 @@ public class Fraise implements Fruit {
             this.origine = origine;
     }
 
+    @Override
     public double getPrix(){
 	return prix;
     }
@@ -35,6 +36,7 @@ public class Fraise implements Fruit {
 	this.prix=prix;
     }
 
+    @Override
     public String getOrigine(){
 	return origine;
     }

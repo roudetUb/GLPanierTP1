@@ -346,7 +346,7 @@ public class PanierTest {
      * Test of retrait method, of class Panier.
      */
     @Ignore
-    public void testRetrait() {
+    public void testRetrait() throws PanierVideException {
         System.out.println("retrait");
         Panier instance = null;
         instance.retrait();

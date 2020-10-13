@@ -13,7 +13,6 @@ import fr.ufrsciencestech.paniertp1.model.PanierPleinException;
 import java.awt.Button;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
