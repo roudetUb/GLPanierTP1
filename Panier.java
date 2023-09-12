@@ -53,7 +53,13 @@ public class Panier {
 
     //groupe 4
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
-       
+        boolean found = false;
+        if (!fruits.isEmpty()){ 
+            for (Fruit fruit : fruits) {
+                if (o.equals(fruit)) found=true;
+            }
+        }
+        if (!found) fruits.add(o);
     }
 
     //groupe 5
@@ -79,7 +85,31 @@ public class Panier {
     
     //tests
     public static void main (String[] args){
-    	//Ecrire ici vos tests
-	System.out.println("premier test Panier");
+        Banane b1=new Banane();
+        Banane b2=new Banane(10, "Espagne");
+        Banane b3=new Banane(-5, "Espagne");
+        Orange o1=new Orange();
+        Orange o2=new Orange(10, "Espagne");
+        Orange o3=new Orange(-5, "Espagne");
+        Panier p=new Panier(10);
+        p.fruits=new ArrayList<Fruit>();
+        try {
+            p.ajout(o1);
+            p.ajout(o2);
+            p.ajout(o3);
+            p.ajout(o1);
+
+            p.ajout(b1);
+            p.ajout(b2);
+            p.ajout(b3);
+            p.ajout(b1);
+            for (Fruit fruit : p.fruits) {
+                System.out.println(fruit.toString());
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.err.println(e);
+        }
+	    System.out.println("premier test Panier");
     }
 }
