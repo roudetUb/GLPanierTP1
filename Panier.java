@@ -36,19 +36,21 @@ public class Panier {
 
     //groupe 3
     public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
-	return null;
+	    return this.fruits.get(i);
     }
     
     public void setFruit(int i, Fruit f){  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
-
+        if (this.fruits.contains(this.fruits.get(i))){
+            this.fruits.set(i, f);
+        }    
     }
     
     public boolean estVide(){  //predicat indiquant que le panier est vide
-	return false;
+	    return this.fruits.isEmpty();
     }
     
     public boolean estPlein(){  //predicat indiquant que le panier est plein
-	return false;
+		    return !this.fruits.isEmpty();
     }
 
     //groupe 4
@@ -79,7 +81,7 @@ public class Panier {
     
     //tests
     public static void main (String[] args){
-    	//Ecrire ici vos tests
+    
 	System.out.println("premier test Panier");
     }
 }
