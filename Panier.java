@@ -8,13 +8,28 @@ public class Panier {
     private int contenanceMax;        //nb maximum d'oranges que peut contenir le panier
 	
     //groupe 1
+
+    /**
+     * Constructeur par defaut (sans parametre)
+     * @param contenanceMax
+     * Contenance maximale du panier (Doit être supérieure à 0)
+     */
     public Panier(int contenanceMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
-	
+	    this.fruits = new ArrayList<Fruit>();
+        if(contenanceMax<1){
+            throw new IllegalArgumentException("La contenance maximale doit être supérieure à 0");
+        }else {
+            this.contenanceMax = contenanceMax;
+        }
     }
 
     @Override
     public String toString(){  //affichage de ce qui est contenu dans le panier : liste des fruits presents
-        return "";
+        String result = "";
+        for(Fruit f : fruits){
+            result += f.toString() + "\n";
+        }
+        return result;
     }
     
     //groupe 2
