@@ -9,44 +9,21 @@ public class Panier {
 
     //groupe 1
     public Panier(int contenanceMax) {  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
-
-    }
-
-    //tests
-    public static void main(String[] args) throws PanierPleinException {
-        //Ecrire ici vos tests
-        System.out.println("premier test Panier");
-        Panier p1 = new Panier(5);
-        Panier p2 = new Panier(5);
-        Panier p3 = new Panier(1);
-
-        Orange o1 = new Orange(0.5, "Espagne");
-        Orange o2 = new Orange(1.0, "Espagne");
-        Orange o3 = new Orange(0.8, "France");
-        Orange o4 = new Orange(0.2, "Italy");
-        Orange o5 = new Orange(0.1, "France");
-
-        p1.ajout(o1);
-        p1.ajout(o2);
-        p1.ajout(o3);
-        p1.ajout(o4);
-        p1.ajout(o5);
-
-        p2.ajout(o5);
-        p2.ajout(o3);
-        p2.ajout(o2);
-        p2.ajout(o1);
-        p2.ajout(o4);
-
-        p3.ajout(o5);
-
-        System.out.println(p1.equals(p3));
-
+        this.fruits = new ArrayList<Fruit>();
+        if (contenanceMax < 1) {
+            throw new IllegalArgumentException("La contenance maximale doit être supérieure à 0");
+        } else {
+            this.contenanceMax = contenanceMax;
+        }
     }
 
     @Override
     public String toString() {  //affichage de ce qui est contenu dans le panier : liste des fruits presents
-        return "";
+        String result = "";
+        for (Fruit f : fruits) {
+            result += f.toString() + "\n";
+        }
+        return result;
     }
 
     //groupe 2
@@ -67,22 +44,22 @@ public class Panier {
     }
 
     //groupe 3
-    public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
-	    return this.fruits.get(i);
+    public Fruit getFruit(int i) {  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
+        return this.fruits.get(i);
     }
 
     public void setFruit(int i, Fruit f) {  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
-        if (this.fruits.contains(this.fruits.get(i))){
+        if (this.fruits.contains(this.fruits.get(i))) {
             this.fruits.set(i, f);
-        }    
+        }
     }
-    
-    public boolean estVide(){  //predicat indiquant que le panier est vide
-	    return this.fruits.isEmpty();
+
+    public boolean estVide() {  //predicat indiquant que le panier est vide
+        return this.fruits.isEmpty();
     }
-    
-    public boolean estPlein(){  //predicat indiquant que le panier est plein
-		    return !this.fruits.isEmpty();
+
+    public boolean estPlein() {  //predicat indiquant que le panier est plein
+        return !this.fruits.isEmpty();
     }
 
     //groupe 4
@@ -123,10 +100,39 @@ public class Panier {
         }
         return false;
     }
-    
+
     //tests
-    public static void main (String[] args){
-    	//Ecrire ici vos tests
-	System.out.println("premier test Panier");
+
+
+    //tests
+    public static void main(String[] args) throws PanierPleinException {
+        //Ecrire ici vos tests
+        System.out.println("premier test Panier");
+        Panier p1 = new Panier(5);
+        Panier p2 = new Panier(5);
+        Panier p3 = new Panier(1);
+
+        Orange o1 = new Orange(0.5, "Espagne");
+        Orange o2 = new Orange(1.0, "Espagne");
+        Orange o3 = new Orange(0.8, "France");
+        Orange o4 = new Orange(0.2, "Italy");
+        Orange o5 = new Orange(0.1, "France");
+
+        p1.ajout(o1);
+        p1.ajout(o2);
+        p1.ajout(o3);
+        p1.ajout(o4);
+        p1.ajout(o5);
+
+        p2.ajout(o5);
+        p2.ajout(o3);
+        p2.ajout(o2);
+        p2.ajout(o1);
+        p2.ajout(o4);
+
+        p3.ajout(o5);
+
+        System.out.println(p1.equals(p3));
+
     }
 }
