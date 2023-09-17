@@ -75,7 +75,9 @@ public class Panier {
 
     //groupe 5
     public void retrait() throws PanierVideException { //retire le dernier fruit du panier si celui-ci n'est pas vide
-
+        if(!this.estVide()) {
+            this.fruits.remove(this.fruits.size()-1);
+        }
     }
 
     //groupe 6
@@ -133,10 +135,18 @@ public class Panier {
             for (Fruit fruit : p.fruits) {
                 System.out.println(fruit.toString());
             }
+
+            p.retrait();
+            System.out.println("test methode");
+            for (Fruit fruit : p.fruits) {
+                System.out.println(fruit.toString());
+            }
         } catch (Exception e) {
             // TODO: handle exception
             System.err.println(e);
         }
 	    System.out.println("premier test Panier");
+
+        
     }
 }
