@@ -1,14 +1,10 @@
 import java.util.ArrayList;
 
-/**
- * @author roudet
- */
 public class Panier {
-    private ArrayList<Fruit> fruits;  //attribut pour stocker les fruits
-    private int contenanceMax;        //nb maximum d'oranges que peut contenir le panier
+    private ArrayList<Fruit> fruits;
+    private int contenanceMax;
 
-    //groupe 1
-    public Panier(int contenanceMax) {  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
+    public Panier(int contenanceMax) {
         this.fruits = new ArrayList<Fruit>();
         if (contenanceMax < 1) {
             throw new IllegalArgumentException("La contenance maximale doit être supérieure à 0");
@@ -18,7 +14,7 @@ public class Panier {
     }
 
     @Override
-    public String toString() {  //affichage de ce qui est contenu dans le panier : liste des fruits presents
+    public String toString() {
         String result = "";
         for (Fruit f : fruits) {
             result += f.toString() + "\n";
@@ -26,127 +22,174 @@ public class Panier {
         return result;
     }
 
-    //groupe 2
-    public ArrayList<Fruit> getFruits() {  //accesseur du premier attribut
-        return null;
+    public ArrayList<Fruit> getFruits() {
+        return fruits;
     }
 
-    public void setFruits(ArrayList<Fruit> fruits) { //modificateur du premier attribut
-
+    public void setFruits(ArrayList<Fruit> fruits) {
+        this.fruits = fruits;
     }
 
-    public int getTaillePanier() {  //accesseur retournant la taille allouee pour l'attibut fruits
-        return 0;
+    public int getTaillePanier() {
+        return fruits.size();
     }
 
-    public int getContenanceMax() {  //accesseur du second attribut
-        return 0;
+    public int getContenanceMax() {
+        return contenanceMax;
     }
 
-    //groupe 3
-    public Fruit getFruit(int i) {  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
-        return this.fruits.get(i);
-    }
-
-    public void setFruit(int i, Fruit f) {  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
-        if (this.fruits.contains(this.fruits.get(i))) {
-            this.fruits.set(i, f);
+    public Fruit getFruit(int i) {
+        if (i >= 0 && i < fruits.size()) {
+            return fruits.get(i);
+        } else {
+            return null;
         }
     }
 
-    public boolean estVide() {  //predicat indiquant que le panier est vide
-        return this.fruits.isEmpty();
-    }
-
-    public boolean estPlein() {  //predicat indiquant que le panier est plein
-        return !this.fruits.isEmpty();
-    }
-
-    //groupe 4
-    public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
-        boolean found = false;
-        if (!fruits.isEmpty()){ 
-            for (Fruit fruit : fruits) {
-                if (o.equals(fruit)) found=true;
-            }
-        }
-        if (!found) fruits.add(o);
-    }
-
-    //groupe 5
-    public void retrait() throws PanierVideException { //retire le dernier fruit du panier si celui-ci n'est pas vide
-        if(!this.estVide()) {
-            this.fruits.remove(this.fruits.size()-1);
+    public void setFruit(int i, Fruit f) {
+        if (i >= 0 && i < fruits.size()) {
+            fruits.set(i, f);
         }
     }
 
-    //groupe 6
-    public double getPrix(){  //calcule le prix du panier par addition des prix de tous les fruits contenus dedans
-	    double prix = 0.0;
-        for (int i=0; i<fruits.size(); i++) {
-            prix += fruits.get(i).getPrix();
+    public boolean estVide() {
+        return fruits.isEmpty();
+    }
+
+    public boolean estPlein() {
+        return fruits.size() >= contenanceMax;
+    }
+
+    public class PanierPleinException extends Exception {
+        public PanierPleinException(String message) {
+            super(message);
+        }
+    }
+
+    public class PanierVideException extends Exception {
+        public PanierVideException(String message) {
+            super(message);
+        }
+    }
+
+    public void ajout(Fruit o) throws PanierPleinException {
+        if (!estPlein() && !fruits.contains(o)) {
+            fruits.add(o);
+        } else {
+            throw new PanierPleinException("Le panier est plein ou le fruit est déjà présent.");
+        }
+    }
+
+    public void retrait() throws PanierVideException {
+        if (!estVide()) {
+            fruits.remove(fruits.size() - 1);
+        } else {
+            throw new PanierVideException("Le panier est vide, impossible de retirer un fruit.");
+        }
+    }
+
+    public double getPrix() {
+        double prix = 0.0;
+        for (Fruit f : fruits) {
+            prix += f.getPrix();
         }
         return prix;
     }
 
-    //groupe 7
-    public void boycotteOrigine(String origine) {  //supprime du panier tous les fruits provenant du pays origine
-
+    public void boycotteOrigine(String origine) {
+        fruits.removeIf(fruit -> fruit.getOrigine().equals(origine));
     }
 
-    //groupe 8
     @Override
-    public boolean equals(Object o) {  ///predicat pour tester si 2 paniers sont equivalents : s'ils contiennent exactement les memes fruits
-        if (o != null && getClass() == o.getClass()) {
-            Panier p = (Panier) o;
-            int compt = 0;
-            if (p.fruits.size() == this.fruits.size()) {
-                for (Fruit f : p.fruits) {
-                    if (this.fruits.contains(f)) {
-                        System.out.println(f);
-                        compt++;
-                    }
-                }
-                return compt == p.fruits.size();
-            }
-        }
-        return false;
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Panier panier = (Panier) o;
+
+        if (contenanceMax != panier.contenanceMax)
+            return false;
+        return fruits != null ? fruits.equals(panier.fruits) : panier.fruits == null;
     }
 
-    //tests
-    public static void main (String[] args){
-        Banane b1=new Banane();
-        Banane b2=new Banane(10, "Espagne");
-        Banane b3=new Banane(-5, "Espagne");
-        Orange o1=new Orange();
-        Orange o2=new Orange(10, "Espagne");
-        Orange o3=new Orange(-5, "Espagne");
-        Panier p=new Panier(10);
+    public static void main(String[] args) {
+        // Tests de la classe Panier
+        Panier p = new Panier(5);
+
+        Orange o1 = new Orange(0.2, "Espagne");
+        Orange o2 = new Orange(0.3, "France");
+        Banane b1 = new Banane(0.25, "Équateur");
+        Papaye papaye = new Papaye(1.5, "Brésil");
+
         try {
             p.ajout(o1);
             p.ajout(o2);
-            p.ajout(o3);
-            p.ajout(o1);
+            p.ajout(b1);
+            p.ajout(papaye);
 
-            p.ajout(b1);
-            p.ajout(b2);
-            p.ajout(b3);
-            p.ajout(b1);
-            for (Fruit fruit : p.fruits) {
-                System.out.println(fruit.toString());
-            }
+            System.out.println("Contenu du panier :");
+            System.out.println(p);
+
+            System.out.println("Prix total du panier : " + p.getPrix() + " euros");
+
+            System.out.println("Boycott des oranges d'Espagne :");
+            p.boycotteOrigine("Espagne");
+            System.out.println(p);
 
             p.retrait();
-            System.out.println("test methode");
-            for (Fruit fruit : p.fruits) {
-                System.out.println(fruit.toString());
-            }
+            System.out.println("Retrait d'un fruit :");
+            System.out.println(p);
+
+            System.out.println("Test d'égalité de paniers : " + p.equals(p));
+
         } catch (Exception e) {
-            // TODO: handle exception
             System.err.println(e);
         }
-	    System.out.println("premier test Panier");
+    }
+}
 
-        
+class Papaye implements Fruit {
+    private double prix;
+    private String origine;
+
+    public Papaye(double prix, String origine) {
+        this.prix = prix;
+        this.origine = origine;
+    }
+
+    @Override
+    public boolean isSeedless() {
+        return true; // Papaye sans pépins
+    }
+
+    @Override
+    public double getPrix() {
+        return prix;
+    }
+
+    @Override
+    public String getOrigine() {
+        return origine;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Papaye papaye = (Papaye) o;
+
+        if (Double.compare(papaye.prix, prix) != 0)
+            return false;
+        return origine != null ? origine.equals(papaye.origine) : papaye.origine == null;
+    }
+
+    @Override
+    public String toString() {
+        return "Papaye de " + origine + " a " + prix + " euros";
     }
 }
